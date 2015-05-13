@@ -31,19 +31,18 @@ associated with calling mobile element insertions in regions next to existing el
 same type in the reference, we first filter out calls located within 500 bp of reference elements.
 This is done using bed tools.
 
-
-**Inputs**
-* CHM1_lib1.SINE.calls.out.PE.vcf  --> output call file from RetroSeq
-* hg19.RM.Alu.sites.sorted.slop500.bed  --> location of Alu in refernece, expanded by
+```
+Inputs
+CHM1_lib1.SINE.calls.out.PE.vcf  --> output call file from RetroSeq
+hg19.RM.Alu.sites.sorted.slop500.bed  --> location of Alu in refernece, expanded by
 500bp using bedtools slop
 
-**Outputs**
-* CHM1_lib1.SINE.calls.out.PE.notRef500.vcf --> filtered VCF, without candidates near reference
+Outputs
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf --> filtered VCF, without candidates near reference
 elements
 
+Command
 
-**Command**
-```
 intersectBed -v -a ../CHM1_lib1.SINE.calls.out.PE.vcf \
 -b hg19.RM.Alu.sites.sorted.slop500.bed \
 > CHM1_lib1.SINE.calls.out.PE.notRef500.vcf
