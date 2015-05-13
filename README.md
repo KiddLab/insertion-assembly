@@ -63,6 +63,56 @@ python select-retroseq-level678.py \
 --out CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678
 ```
 
+## Assembly Pipeline
+
+In step 1, soft clipped reads in region of each call are gathered
+
+```
+Inputs:
+CHM1_lib1.markdup.bam --> BAM file used for RetroSeq 
+Outputs:
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.softclip --> file of reads with softclipping
+that are in each call region
+
+Command:
+python 01_gather-soft-clipped-persample.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--bam CHM1_lib1.markdup.bam \
+--out CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.softclip
+
+```
+
+In step 2, we gather all the read pairs that support candidate calls.  To get both
+ends of a read the BAM file must be traversed entirely, which may take some time.
+
+```
+Inputs:
+CHM1_lib1.SINE.discovery.tab --> file from the *discovery* step of RetroSeq
+Outputs:
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.w500.sam --> SAM file of read pairs
+from the soft clip and original support files from RetroSeq.
+
+Command:
+python scripts/02_gather-seq-sam-persample.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--bam  CHM1_lib1.markdup.bam \
+--softclip CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.softclip \
+--discover  CHM1_lib1.SINE.discovery.tab  \
+--out CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.w500.sam
+```
+
+
+
+
+
+```
+Inputs:
+
+Outputs:
+
+Command:
+```
+
 
 
 
