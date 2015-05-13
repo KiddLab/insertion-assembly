@@ -33,6 +33,7 @@ This is done using bed tools.
 
 
 **Inputs**
+
 *CHM1_lib1.SINE.calls.out.PE.vcf  --> output call file from RetroSeq
 *hg19.RM.Alu.sites.sorted.slop500.bed  --> location of Alu in refernece, expanded by
 500bp using bedtools slop
