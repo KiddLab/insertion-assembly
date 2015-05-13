@@ -16,6 +16,13 @@ fastq_to_fasta.py (from http://nebc.nerc.ac.uk/downloads/scripts/parse/fastq_to_
 The pipeline is designed to work with results output from RetroSeq for discovery of mobile
 element insertions, but can easily be modified for local assembly of other variants or using
 other programs for initial candidate discovery.
+
+**Note**
+Manual changes must be made to RepeatMasker options (for example, for different species)
+and to output parsing (for example, LINE vs SINE element matching) at appropriate places
+in some scripts.  Also, for proper execution on some systems may require changes to the "scriptDir"
+parameter in some files.  See code for details and for where changes are required.
+
  
 ## Example usage description
 
