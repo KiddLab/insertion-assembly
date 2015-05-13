@@ -206,7 +206,34 @@ python 10_check-not-both-ends-gap.py \
 --in CHM1_lib1.assembly_SINE.txt.30both.sel.longest
 ```
 
-## Alignment with Reference Genome and Breakpoint Determination
+## Alignment to Reference Genome and Breakpoint Determination
+
+Next, candidate insertion will be aligned to the reference and characterized. This
+includes making of annotated images using miropeats for comparison, then ultimately
+extraction of sequence and 3-way alignment to determine breakpoints
+
+In step 11, the directory and files required for subsequent steps are setup and the 
+orientaiton of the contig (i.e, direct or reverse complement) is determined.
+
+```
+Input:
+CHM1_lib1.assembly_SINE.txt.30both.sel.longest.notbothgap --> selected contig for each site from
+step 10
+hg19.fa --> reference genome, indixed using samtools
+initial_assembly/ --> directory of initial assembly results from above
+parse/initial/ --> directory for initial files for reference comparison
+Output:
+required files are written in directories created under the indicated location.  Also,
+new file summary of contig orientaiton and information is written to 
+CHM1_lib1.assembly_SINE.txt.30both.sel.longest.notbothgap.getcontig
+
+Command:
+python 11_get-breakpoints-setup.py \
+--in CHM1_lib1.assembly_SINE.txt.30both.sel.longest.notbothgap \
+--ref bwa-0.5.9-index/hg19.fa \
+--assembase initial_assembly/  \
+--parsebase parse_2015-04_26/initial/
+```
 
 
 
