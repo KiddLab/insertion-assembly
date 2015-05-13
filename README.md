@@ -141,15 +141,34 @@ python 04_run-cap3-assembly.py \
 --log logs/CHM1_lib1.678.assem.log
 ```
 
+Contigs from CAP3 are linked together based on CAP3 reported linking informaiton to form
+scaffolds.  Contigs are separated by a run of 'N'.  RepeatMasker is then ran on the assembled
+sequences.
+
+```
+Command:
+python 05_combine-contigs-based-on-links.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--outdirbase CHM1/initial_assembly 
+```
+
+In step 6, resulting linked scaffolds are RepeatMasked and then analyzed for matches to 
+element of interest.
 
 
 ```
-Inputs:
-
 Outputs:
+CHM1_lib1.assembly_SINE.txt --> summary table of repeat hits for element type of interest
+for each assembled sequence
 
 Command:
+python 06_parse-sine-cap3-only-assembly.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--outdirbase CHM1/initial_assembly \
+--out CHM1_lib1.assembly_SINE.txt
 ```
+
+
 
 
 
