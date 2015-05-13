@@ -49,6 +49,7 @@ intersectBed -v -a ../CHM1_lib1.SINE.calls.out.PE.vcf \
 > CHM1_lib1.SINE.calls.out.PE.notRef500.vcf
 ```
 
+- - -
 Next, select sites with RetroSeq support level >=6 for assembly
 
 **Inputs**
