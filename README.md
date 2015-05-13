@@ -152,9 +152,13 @@ python 05_combine-contigs-based-on-links.py \
 --outdirbase CHM1/initial_assembly 
 ```
 
-In step 6, resulting linked scaffolds are RepeatMasked and then analyzed for matches to 
-element of interest.
+## Parsing of Assembly Results
 
+Results of the assembly are analyzed to identify insertions with assembled sequence supporting
+the givne insertion type.  These candidate are then further analyzed in the breakpoint 
+analysis step.
+
+In step 6, scaffolds are analyzed for matches to the element of interest.
 
 ```
 Outputs:
@@ -168,6 +172,41 @@ python 06_parse-sine-cap3-only-assembly.py \
 --out CHM1_lib1.assembly_SINE.txt
 ```
 
+In step 7, candidates insertion sties with 30 bp of sequence on each end are selected
+
+```
+Command:
+python 07_get-has-30-both.py \
+--in CHM1_lib1.assembly_SINE.txt
+```
+
+In step 8, individual assembled contigs passing criteria are selected
+
+```
+Command:
+python 08_select-fragment-that-is-full.py \
+--in CHM1_lib1.assembly_SINE.txt.30both
+```
+
+In step 9, the longest hit is chosen for each site
+
+```
+Command:
+python 09_select-longest.py \
+--in CHM1_lib1.assembly_SINE.txt.30both.sel
+```
+
+In step 10, an additional check is performed to ensure that at least one end of the 
+RepeatMasked position does not end in a gap in the assembled sequence
+
+```
+Command:
+python 10_check-not-both-ends-gap.py \
+--outdirbase CHM1/initial_assembly \
+--in CHM1_lib1.assembly_SINE.txt.30both.sel.longest
+```
+
+## Alignment with Reference Genome and Breakpoint Determination
 
 
 
