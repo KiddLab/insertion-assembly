@@ -42,7 +42,7 @@ workingDirBase = options.mrDir
 
 # hardcoded in base scripts dir
 # set scriptDir to location where scripts are installed
-#scriptDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/RetroSeq-HGDP/retroseq-alu-additional/results/assembly/hg18/scripts/'
+#scriptDir = 'scripts/'
 scriptDir = '../'
 regDelta = 2000
 
@@ -50,11 +50,6 @@ regDelta = 2000
 outResFile = options.inputFileName
 outResFile2 = outResFile + '.3wayalign'
 print 'Writing table of 3 way alignment results to',outResFile2
-
-#assemBaseDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/canine-retroseq/SINE/assembly/'
-#parseOutBaseDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/canine-retroseq/SINE/parse_2015-01-06/'
-#workingDirBase = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/canine-retroseq/SINE/parse_2015-01-06/miropeats/'
-
 
 
 

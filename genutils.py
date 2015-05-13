@@ -14,7 +14,9 @@ import numpy as np
 #########################################################################################
 # merges bed file intervals, uses call to bed tools
 def merge_beds(bedInts):
+    #change this to required temp dir you have access to
     tmpDir = '/home/jmkidd/kidd-lab-scratch/jmkidd-projects/tmp/'
+    tmpDir = '.'
     
     tmpFile = tempfile.NamedTemporaryFile(dir=tmpDir,suffix='.bed',delete=False)
     tmpFileName = tmpFile.name
