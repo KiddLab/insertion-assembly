@@ -1,8 +1,9 @@
 import sys
 from optparse import  OptionParser
 
-scriptDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/RetroSeq-HGDP/retroseq-alu-additional/results/assembly/hg18/scripts/'
-
+# set scriptDir to location where scripts are installed
+#scriptDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/RetroSeq-HGDP/retroseq-alu-additional/results/assembly/hg18/scripts/'
+scriptDir = '../'
 
 ###############################################################################
 #changes based on PS_template_April2010 value
