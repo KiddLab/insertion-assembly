@@ -42,7 +42,7 @@ This is done using bed tools.
 elements
 
 
-***Command***
+**Command**
 ```
 intersectBed -v -a ../CHM1_lib1.SINE.calls.out.PE.vcf \
 -b hg19.RM.Alu.sites.sorted.slop500.bed \
@@ -57,7 +57,7 @@ elements
 **Outputs**
 * CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 --> only calls with support level >=6
 
-***Command***
+**Command**
 ```
 python select-retroseq-level678.py \
 --in CHM1_lib1.SINE.calls.out.PE.notRef500.vcf \
