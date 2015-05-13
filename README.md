@@ -53,7 +53,6 @@ Next, select sites with RetroSeq support level >=6 for assembly
 Inputs:
 CHM1_lib1.SINE.calls.out.PE.notRef500.vcf --> filtered VCF, without candidates near reference
 elements
-
 Outputs:
 CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 --> only calls with support level >=6
 
@@ -93,7 +92,7 @@ CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.w500.sam --> SAM file of read p
 from the soft clip and original support files from RetroSeq.
 
 Command:
-python scripts/02_gather-seq-sam-persample.py \
+python 02_gather-seq-sam-persample.py \
 --vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
 --bam  CHM1_lib1.markdup.bam \
 --softclip CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.softclip \
@@ -101,7 +100,27 @@ python scripts/02_gather-seq-sam-persample.py \
 --out CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.w500.sam
 ```
 
+In step 3, reads are matched with the call they support using bedtools windowBed.  
+Additional formating also occurs prior to assembly.
 
+```
+Inputs:
+Files from previous steps
+Outputs:
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.seq --> file of sequence information
+listing name, read number, quality, and sample name
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.names --> read names and coordinates
+
+Command:
+python 03_combine-sam-and-evidence.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--softclip CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.softclip \
+--discover  CHM1_lib1.SINE.discovery.tab   \
+--sam CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.w500.sam \
+--outseq CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.seq \
+--outnames CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.names \
+--sample CHM1
+```
 
 
 
