@@ -23,7 +23,7 @@ To illustrate program usage, we consider analysis of Alu calls identified using 
 based on 2x100 bp Illumina WGS data from the CHM1 mole sample ( [Chaisson et al,](http://www.ncbi.nlm.nih.gov/pubmed/25383537) 
 SRA: [SRX652547](http://www.ncbi.nlm.nih.gov/sra/SRX652547[accn])  )
 
-## Initial preperation
+## Initial Preparation
 
 We begin with a BAM file of Illumina reads mapped and processed using standard approaches.
 RetroSeq is then used discover candidate Alu insertions, as described.  Given the problems
@@ -42,9 +42,28 @@ This is done using bed tools.
 elements
 
 
-Command:
+***Command***
 ```
 intersectBed -v -a ../CHM1_lib1.SINE.calls.out.PE.vcf \
 -b hg19.RM.Alu.sites.sorted.slop500.bed \
 > CHM1_lib1.SINE.calls.out.PE.notRef500.vcf
 ```
+
+Next, select sites with RetroSeq support level >=6 for assembly
+**Inputs**
+* CHM1_lib1.SINE.calls.out.PE.notRef500.vcf --> filtered VCF, without candidates near reference
+elements
+
+**Outputs**
+* CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 --> only calls with support level >=6
+
+***Command***
+```
+python select-retroseq-level678.py \
+--in CHM1_lib1.SINE.calls.out.PE.notRef500.vcf \
+--out CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678
+```
+
+
+
+
