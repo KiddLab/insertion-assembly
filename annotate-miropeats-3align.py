@@ -3,7 +3,7 @@ import pickle
 from optparse import  OptionParser
 
 # set scriptDir to location where scripts are installed
-scriptDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/RetroSeq-HGDP/retroseq-alu-additional/results/assembly/hg18/scripts/'
+#scriptDir = '/home/jmkidd/kidd-lab/jmkidd-projects/people-projects/jwilds-projects/RetroSeq-HGDP/retroseq-alu-additional/results/assembly/hg18/scripts/'
 scriptDir = '../'
 
 
