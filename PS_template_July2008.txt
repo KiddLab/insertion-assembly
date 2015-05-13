@@ -1,0 +1,233 @@
+% Colors
+% see
+% https://www.hrz.tu-darmstadt.de/hhlr/doku/sw/ploticus/doc/color.html
+/Pink {1 0.8 0.8 setrgbcolor}	def
+/Red {1 0 0 setrgbcolor}	def
+/Magenta {1 .3 .5 setrgbcolor}	def
+/Orange {1 .62 .14 setrgbcolor}	def
+/Yellow {1 1 0 setrgbcolor}	def
+
+/FGreen {0 1 0 setrgbcolor }	def
+/Green {0 0.7 0 setrgbcolor }	def
+/DrbGreen {0.6 0.8 0.6 setrgbcolor }	def
+/PwdBlue {0.7 0.7 1 setrgbcolor}	def
+/SkyBlue {0.7 0.8 1 setrgbcolor} def
+/CbBlue {0.6 0.6 1 setrgbcolor} def
+/Blue {0 0.4 0.8 setrgbcolor}	def
+/DkBlue {0 0 0.6 setrgbcolor }	def
+/Purple {0.47 0 0.47 setrgbcolor }	def
+
+/LtGray {.75 .75 .75 setrgbcolor}	def
+/MedGray {.5 .5 .5 setrgbcolor}	def
+/DkGray {0.3 0.3 0.3 setrgbcolor}	def
+/White {1 1 1 setrgbcolor }	def
+/Black {0 0 0 setrgbcolor }	def
+
+
+/RIGHT_end 
+{
+   /end1 exch def
+   /start1 exch def
+   /number1 exch def
+   /y1 drop number1 mul def
+   /y2 y1 10 add def
+   /x1 start1 xstretch div cm def
+   /x2 end1 xstretch div cm def
+   /ym y1 5 add def
+   newpath x1 y1 moveto x2 ym lineto x1 y2 lineto  x1 y1 lineto
+   closepath 
+   fill stroke
+
+} def
+
+/LEFT_end 
+{
+   /end1 exch def
+   /start1 exch def
+   /number1 exch def
+   /y1 drop number1 mul def
+   /y2 y1 10 add def
+   /x1 start1 xstretch div cm def
+   /x2 end1 xstretch div cm def
+   /ym y1 5 add def
+   newpath x1 ym moveto x2 y2 lineto x2 y1 lineto  x1 ym lineto
+   closepath 
+   fill stroke
+
+} def
+
+/exon
+{
+        /end1 exch def
+        /start1 exch def
+        /number1 exch def
+        /y1 drop number1 mul def
+        /y2 y1 10 add def
+        /x1 start1 xstretch div cm def
+        /x2 end1 xstretch div cm def
+        newpath x1 y1  moveto x1 y2 lineto x2 y2 lineto x2 y1 lineto
+        closepath
+        fill stroke
+} def
+/printname_right {
+	/name1 exch def
+	/height1 exch def
+	/y1 drop height1 mul def
+	graphicmargin 0.6 cm add y1 moveto
+	0 8 -2 div rmoveto
+	name1 100 string cvs show 
+
+} def
+
+/printname_left {
+	/name1 exch def
+	/height1 exch def
+	/y1 drop height1 mul def
+        0 y1 moveto
+	name1 100 string cvs show 
+
+} def
+
+
+/printcontig_right {
+	/length2 exch def
+	/end2 exch def
+	/start2 exch def
+	/name2 exch def
+	/number2 exch def
+	/length1 exch def
+	/end1 exch def
+	/start1 exch def
+	/name1 exch def
+	/number1 exch def
+	/y1 drop number1 mul def
+	/x1 start1 xstretch div cm def
+	/x2 end1 xstretch div cm def
+	/y2 drop number2 mul def
+	/x3 start2 xstretch div cm def
+	/x4 end2 xstretch div cm def
+	/middley1 y1 y2 add 2 div def
+	number1 number2 eq {/middley1 middley1 drop 0.75 mul add def} if
+	/middley2 middley1 def
+	number1 number2 eq {start1 end1 sub start2 end2 sub ne start1 end2 ne and {/middley1 middley1 drop 0.2 mul add def /middley2 middley2 drop 0.15 mul add def} if } if
+	start1 start2 gt { /temp middley1 def /middley1 middley2 def /middley2 temp def } if
+	repwidth setlinewidth
+	newpath
+	x1 y1 moveto
+	x2 y1 lineto
+	stroke
+	newpath
+	x3 y2 moveto
+	x4 y2 lineto
+	stroke
+	linkwidth setlinewidth
+	newpath
+	x1 y1 moveto
+	x1 middley1 x3 middley1 x3 y2 curveto
+	stroke
+	newpath
+        Red
+	x2 y1 moveto
+	x2 middley2 x4 middley2 x4 y2 curveto
+	stroke
+        Black
+	y1 name1 y2 name2 printnames
+	length1 xstretch div cm y1 tagends
+	length2 xstretch div cm y2 tagends
+} def
+
+/printcontig_left {
+	/length2 exch def
+	/end2 exch def
+	/start2 exch def
+	/name2 exch def
+	/number2 exch def
+	/length1 exch def
+	/end1 exch def
+	/start1 exch def
+	/name1 exch def
+	/number1 exch def
+	/y1 drop number1 mul def
+	/x1 start1 xstretch div cm def
+	/x2 end1 xstretch div cm def
+	/y2 drop number2 mul def
+	/x3 start2 xstretch div cm def
+	/x4 end2 xstretch div cm def
+	/middley1 y1 y2 add 2 div def
+	number1 number2 eq {/middley1 middley1 drop 0.75 mul add def} if
+	/middley2 middley1 def
+	number1 number2 eq {start1 end1 sub start2 end2 sub ne start1 end2 ne and {/middley1 middley1 drop 0.2 mul add def /middley2 middley2 drop 0.15 mul add def} if } if
+	start1 start2 gt { /temp middley1 def /middley1 middley2 def /middley2 temp def } if
+	repwidth setlinewidth
+	newpath
+	x1 y1 moveto
+	x2 y1 lineto
+	stroke
+	newpath
+	x3 y2 moveto
+	x4 y2 lineto
+	stroke
+	linkwidth setlinewidth
+	newpath
+	Red
+	x1 y1 moveto
+	x1 middley1 x3 middley1 x3 y2 curveto
+	stroke
+	Black
+	newpath
+	x2 y1 moveto
+	x2 middley2 x4 middley2 x4 y2 curveto
+	stroke
+	y1 name1 y2 name2 printnames
+	length1 xstretch div cm y1 tagends
+	length2 xstretch div cm y2 tagends
+} def
+
+/printcontig_both {
+	/length2 exch def
+	/end2 exch def
+	/start2 exch def
+	/name2 exch def
+	/number2 exch def
+	/length1 exch def
+	/end1 exch def
+	/start1 exch def
+	/name1 exch def
+	/number1 exch def
+	/y1 drop number1 mul def
+	/x1 start1 xstretch div cm def
+	/x2 end1 xstretch div cm def
+	/y2 drop number2 mul def
+	/x3 start2 xstretch div cm def
+	/x4 end2 xstretch div cm def
+	/middley1 y1 y2 add 2 div def
+	number1 number2 eq {/middley1 middley1 drop 0.75 mul add def} if
+	/middley2 middley1 def
+	number1 number2 eq {start1 end1 sub start2 end2 sub ne start1 end2 ne and {/middley1 middley1 drop 0.2 mul add def /middley2 middley2 drop 0.15 mul add def} if } if
+	start1 start2 gt { /temp middley1 def /middley1 middley2 def /middley2 temp def } if
+	repwidth setlinewidth
+	newpath
+	x1 y1 moveto
+	x2 y1 lineto
+	stroke
+	newpath
+	x3 y2 moveto
+	x4 y2 lineto
+	stroke
+	linkwidth setlinewidth
+	newpath
+	Red
+	x1 y1 moveto
+	x1 middley1 x3 middley1 x3 y2 curveto
+	stroke
+	Black
+	newpath
+	Red
+	x2 y1 moveto
+	x2 middley2 x4 middley2 x4 y2 curveto
+	stroke
+	Black
+	y1 name1 y2 name2 printnames
+	length1 xstretch div cm y1 tagends
+	length2 xstretch div cm y2 tagends
+} def
