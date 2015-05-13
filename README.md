@@ -232,9 +232,85 @@ python 11_get-breakpoints-setup.py \
 --in CHM1_lib1.assembly_SINE.txt.30both.sel.longest.notbothgap \
 --ref bwa-0.5.9-index/hg19.fa \
 --assembase initial_assembly/  \
---parsebase parse_2015-04_26/initial/
+--parsebase parse/initial/
 ```
 
+In step 12, miropeats is used to get an initial breakpoint guess for subsequent steps.
+
+```
+Input:
+parse/miropeats --> directory where miropeats analysis files will be created and used
+Output:
+parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats --> table of initial miropeats results
+and parse information.
+For each candidate insertion, and file *.initialMR.annotated.pdf is also created giving
+annotated version of miropeats comparison.
+
+Command:
+python 12_get-breakpoints-initialMR.py \
+--ref bwa-0.5.9-index/hg19.fa \
+--tmp tmp/ \
+--assembase initial_assembly/  \
+--miropeats_base parse/miropeats \
+--in CHM1_lib1.assembly_SINE.txt.30both.sel.longest.notbothgap.getcontig \
+--out parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats
+```
+
+In step 13, the initial attempt at extracting sequencing and aligning the three breakpoint
+regions to determine exact breakpoints is performed.  Results are summarized in new file and
+PDF images for each site are constructed.
+
+
+```
+Output:
+CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign and  --> table summarizing parse 
+results
+For each candidate insertion, and file *.3way.combined.annotated.pdf is also created giving
+annotated version of miropeats comparison.
+
+python 13_get-breakpoints-3way-align.py \
+--ref bwa-0.5.9-index/hg19.fa \
+--miropeats_base parse/miropeats \
+--in parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats
+```
+
+At this point, candidate breakpoints have been determined for each site.  They should then
+be assessed for accuracy, sites dropped without support (for example, if variant is actually
+flanked by gaps without evidence of continuity), or repeated with new sequences extracted
+for breakpoint alignment (for example, if the automated miropeats analysis selected the wrong 
+candidate breakpoint region, or if aligned sequence is too short to show clear breakpoint
+pattern.
+
+This can be facilitated using combine-pdf-images.py which makes a single (sorted) PDF of 
+the individual images for review.
+
+```
+python combine-pdf-images.py \
+--miropeats_base parse_2015-04_26/miropeats \
+--in parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign \
+--out parse/combined-pdfs/CHM1_lib1.SINE.3wayalign.pdf
+```
+
+Sites can then be dropped, and changes updated iteratively using 14_update-3way-align.py,
+which based on coded comments from manual review repeats breakpoint identification process
+based on new sequences that are extracted for alignment.
+
+
+```
+Input:
+parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign.changes --> table giving
+changes in sequence to extract for breakpoint alignment for sites requiring changes
+Output:
+parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign.changes.a1 --> breakpoint table
+for updated sites
+
+Command:
+python 14_update-3way-align.py \
+--ref bwa-0.5.9-index/hg19.fa \
+--miropeats_base parse_2015-04_26/miropeats \
+--in parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign.changes \
+--out parse/CHM1_lib1.assembly_SINE.txt.initial_miropeats.3wayalign.changes.a1
+```
 
 
 
