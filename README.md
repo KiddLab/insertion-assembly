@@ -122,6 +122,25 @@ python 03_combine-sam-and-evidence.py \
 --sample CHM1
 ```
 
+In step 4, reads supporting each candidate call are assembled using CAP3
+```
+Inputs:
+CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.names.w500 --> output of windowbed 
+as executed in step 3
+CHM1/initial_assembly --> directory for initial assembly
+Outputs:
+initial assemblies are reported under the directory indicated.  Information is also written
+to the indicated log file.
+
+Command:
+python 04_run-cap3-assembly.py \
+--vcf CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678 \
+--seq CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.seq \
+--namesintersect CHM1_lib1.SINE.calls.out.PE.notRef500.vcf.sel678.reads.names.w500 \
+--outdirbase CHM1/initial_assembly \
+--log logs/CHM1_lib1.678.assem.log
+```
+
 
 
 ```
