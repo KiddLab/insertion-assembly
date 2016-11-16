@@ -6,6 +6,13 @@ transposable element (i.e., Alu) calls using Illumina short read data.  The pipe
 utilizes the CAP3 assembler, and is based on initial detection of candidate insertions 
 based on the program RetroSeq.
 
+For more information, please see: 
+
+Wildschutte JH, Baron A, Diroff NM, Kidd JM. Discovery and characterization of Alu repeat sequences via precise local read
+assembly. Nucleic Acids Res. 2015 Dec 2;43(21):10292-307. doi: 10.1093/nar/gkv1089. Epub 2015 Oct 25.
+
+https://www.ncbi.nlm.nih.gov/pubmed/26503250
+
 ## Required Components
 The following programs must be in the *path* and be *executable*:
 bedtools, CAP3, RepeatMasker, miropeats, ps2pdf, samtools, blat,
